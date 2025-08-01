@@ -1,11 +1,743 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Laundrify - Layanan Laundry Cepat & Ga Ribet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-tshirt"></i>
+                <span>Laundrify</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="#services">Layanan</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 id="welcome-message">Hi, Selamat Datang!</h1>
+                <p>Solusi laundry terpercaya untuk kebutuhan kebersihan pakaian Anda</p>
+                <button class="cta-button" onclick="scrollToServices()">
+                    Kenali layanan kami lebih jauh
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profile" class="profile-section">
+        <div class="container">
+            <h2 class="section-title">Our Profile</h2>
+
+            <div class="profile-grid">
+                <div class="profile-card">
+                    <div class="card-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>Tentang Perusahaan</h3>
+                    <p>Laundrify adalah perusahaan jasa laundry yang telah berpengalaman lebih dari 10 tahun
+                        dalam memberikan layanan pencucian pakaian berkualitas tinggi dengan teknologi modern dan ramah
+                        lingkungan.</p>
+                </div>
+
+                <div class="profile-card">
+                    <div class="card-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Visi & Misi</h3>
+                    <div class="vision-mission">
+                        <h4>Visi:</h4>
+                        <p>Menjadi penyedia layanan laundry terdepan yang memberikan kepuasan maksimal kepada pelanggan.
+                        </p>
+                        <h4>Misi:</h4>
+                        <ul>
+                            <li>Memberikan layanan laundry berkualitas tinggi</li>
+                            <li>Menggunakan teknologi ramah lingkungan</li>
+                            <li>Memberikan pelayanan yang cepat dan terpercaya</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="profile-card">
+                    <div class="card-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Sejarah Berdiri</h3>
+                    <div class="history-timeline">
+                        <div class="timeline-item">
+                            <span class="year">2015</span>
+                            <p>Didirikan dengan 1 outlet pertama di Gadel Sari</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="year">2019</span>
+                            <p>Mulai menjangkau ranah online/internet</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="year">2025</span>
+                            <p>Melayani lebih dari 2000 pengguna setia</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY PAGE -->
+    <section id="gallery" class="page-section">
+        <div class="container">
+            <h2 class="section-title">Galeri Kami</h2>
+            <p class="section-subtitle">Lihat fasilitas, tim, dan peralatan modern kami</p>
+
+            <!-- Gallery Filter Tabs -->
+            <div class="gallery-filter">
+                <button class="gallery-tab active" data-category="all">
+                    <i class="fas fa-th"></i>
+                    Semua
+                </button>
+                <button class="gallery-tab" data-category="owner">
+                    <i class="fas fa-user-tie"></i>
+                    Owner & Tim
+                </button>
+                <button class="gallery-tab" data-category="machines">
+                    <i class="fas fa-cogs"></i>
+                    Mesin & Peralatan
+                </button>
+                <button class="gallery-tab" data-category="facility">
+                    <i class="fas fa-building"></i>
+                    Fasilitas
+                </button>
+                <button class="gallery-tab" data-category="process">
+                    <i class="fas fa-tasks"></i>
+                    Proses Kerja
+                </button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="gallery-grid">
+                <!-- Owner & Team Photos -->
+                <div class="gallery-item" data-category="owner">
+                    <div class="gallery-image">
+                        <img src="https://www.alphajwc.com/wp-content/uploads/2023/07/business.jpg"
+                            alt="Owner - Farid Luqman H">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>Farid Luqman H</h4>
+                                <p>Owner & Founder</p>
+                            </div>
+                            <button class="gallery-zoom" onclick="openImageModal(this)">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="owner">
+                    <div class="gallery-image">
+                        <img src="https://pusatmesinlaundry.com/wp-content/uploads/2025/02/hp-4jpg.jpg"
+                            alt="Tim Laundry Profesional">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>Tim Profesional</h4>
+                                <p>Staff Berpengalaman</p>
+                            </div>
+                            <button class="gallery-zoom" onclick="openImageModal(this)">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="owner">
+                    <div class="gallery-image">
+                        <img src="https://res.cloudinary.com/arkademi-tech/images/f_auto,q_auto/v1665666284/menjadi-customer-service/menjadi-customer-service.webp?_i=AA"
+                            alt="Customer Service Team">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>Customer Service</h4>
+                                <p>Pelayanan Ramah</p>
+                            </div>
+                            <button class="gallery-zoom" onclick="openImageModal(this)">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Machines & Equipment -->
+                <div class="gallery-item" data-category="machines">
+                    <div class="gallery-image">
+                        <img src="https://m.indonesian.autowashingmachine.com/photo/pd141198041-heavy_duty_industrial_washer_extractor_lavadora_mesin_cuci_laundry.jpg"
+                            alt="Mesin Cuci Industrial">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>Mesin Cuci Industrial</h4>
+                                <p>Kapasitas Besar & Efisien</p>
+                            </div>
+                            <button class="gallery-zoom" onclick="openImageModal(this)">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="machines">
+                    <div class="gallery-image">
+                        <img src="https://asset.kompas.com/crops/CbELwX83o8TzIcIDVx9BoaPsj6g=/210x0:2895x1790/1200x800/data/photo/2022/04/09/6250e5c5abbc8.jpg"
+                            alt="Mesin Pengering Modern">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>Mesin Pengering</h4>
+                                <p>Teknologi Modern</p>
+                            </div>
+                            <button class="gallery-zoom" onclick="openImageModal(this)">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="machines">
+                    <div class="gallery-image">
+                        <img src="https://image.made-in-china.com/202f0j00csJbqTGFrUov/Industrial-Utility-Manual-Steam-Press-Ironer-Machine-for-Clothes.webp"
+                            alt="Mesin Setrika Steam">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>Mesin Setrika Steam</h4>
+                                <p>Hasil Rapi & Profesional</p>
+                            </div>
+                            <button class="gallery-zoom" onclick="openImageModal(this)">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Facility Photos -->
+                <div class="gallery-item" data-category="facility">
+                    <div class="gallery-image">
+                        <img src="https://www.domuslaundry.com/wp-content/uploads/2023/09/control-acceso-salas-blancas.jpg"
+                            alt="Area Cuci Bersih">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>Area Cuci</h4>
+                                <p>Bersih & Higienis</p>
+                            </div>
+                            <button class="gallery-zoom" onclick="openImageModal(this)">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="facility">
+                    <div class="gallery-image">
+                        <img src="https://sanjayarajalaundrymart.com/wp-content/uploads/2025/02/Desain-tanpa-judul-7-e1739434504965.png"
+                            alt="Ruang Tunggu Nyaman">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>Ruang Tunggu</h4>
+                                <p>Nyaman & Ber-AC</p>
+                            </div>
+                            <button class="gallery-zoom" onclick="openImageModal(this)">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="facility">
+                    <div class="gallery-image">
+                        <img src="https://wiratech.co.id/wp-content/uploads/2019/10/e14e3e15ded631c0a05e5214f98653b1-3.jpg"
+                            alt="Area Packing Rapi">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>Area Packing</h4>
+                                <p>Rapi & Terorganisir</p>
+                            </div>
+                            <button class="gallery-zoom" onclick="openImageModal(this)">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Work Process -->
+                <div class="gallery-item" data-category="process">
+                    <div class="gallery-image">
+                        <img src="https://cdn.rri.co.id/berita/98/images/1705277196287-W/s3xmqwb7gclsgxc.jpeg"
+                            alt="Proses Sortir Pakaian">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>Sortir Pakaian</h4>
+                                <p>Pemisahan Berdasarkan Jenis</p>
+                            </div>
+                            <button class="gallery-zoom" onclick="openImageModal(this)">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="process">
+                    <div class="gallery-image">
+                        <img src="https://laundryexpressjogja.com/wp-content/uploads/2024/09/Proses-mencuci-pakaian.jpg"
+                            alt="Proses Pencucian">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>Proses Pencucian</h4>
+                                <p>Dengan Deterjen Premium</p>
+                            </div>
+                            <button class="gallery-zoom" onclick="openImageModal(this)">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="process">
+                    <div class="gallery-image">
+                        <img src="https://web-res.midea.com/content/dam/toshiba-aem/id/1-blog/may-25/Ketahui-Jenis-Bahan-Pakaian-Sebelum-Menggunakan-Mesin-Cuci.jpg/jcr:content/renditions/Ketahui-Jenis-Bahan-Pakaian-Sebelum-Menggunakan-Mesin-Cuci.webp"
+                            alt="Proses Pengeringan">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>Proses Pengeringan</h4>
+                                <p>Kering Sempurna</p>
+                            </div>
+                            <button class="gallery-zoom" onclick="openImageModal(this)">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Modal for Gallery -->
+    <div id="imageModal" class="image-modal">
+        <div class="image-modal-content">
+            <span class="image-modal-close" onclick="closeImageModal()">&times;</span>
+            <img id="modalImage" src="/placeholder.svg" alt="">
+            <div class="image-modal-info">
+                <h4 id="modalTitle"></h4>
+                <p id="modalDescription"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICES PAGE -->
+    <section id="services" class="page-section">
+        <div class="container">
+            <h2 class="section-title">Layanan Kami</h2>
+
+            <!-- Layanan Reguler (Always Visible) -->
+            <div class="service-category visible">
+                <h3 class="category-title">
+                    <i class="fas fa-tshirt"></i>
+                    Layanan Reguler
+                </h3>
+                <div class="services-grid">
+                    <div class="service-card reguler">
+                        <div class="service-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <h4>Cuci Kering</h4>
+                        <p>Layanan lengkap cuci, kering, tanpa setrika</p>
+                        <div class="service-price">Rp 8.000/kg</div>
+                        <ul class="service-features">
+                            <li>Cuci dengan deterjen premium</li>
+                            <li>Kering dengan mesin modern</li>
+                            <li>Lipat rapi dan wangi tahan lama</li>
+                            <li>Estimasi: 2-3 hari kerja</li>
+                            <li>Minimum order: 3kg</li>
+                        </ul>
+                        <button class="service-btn" onclick="navigateToPage('contact')">Pesan Sekarang</button>
+                    </div>
+
+                    <div class="service-card reguler">
+                        <div class="service-icon">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <h4>Cuci Basah</h4>
+                        <p>Layanan cuci saja tanpa pengeringan, cocok untuk yang ingin jemur sendiri</p>
+                        <div class="service-price">Rp 5.000/kg</div>
+                        <ul class="service-features">
+                            <li>Cuci bersih dengan deterjen berkualitas</li>
+                            <li>Peras hingga tidak terlalu basah</li>
+                            <li>Siap untuk dijemur</li>
+                            <li>Estimasi: 1-2 hari kerja</li>
+                            <li>Minimum order: 3kg</li>
+                        </ul>
+                        <button class="service-btn" onclick="navigateToPage('contact')">Pesan Sekarang</button>
+                    </div>
+
+                    <div class="service-card reguler">
+                        <div class="service-icon">
+                            <i class="fas fa-iron"></i>
+                        </div>
+                        <h4>Cuci Setrika</h4>
+                        <p>Paket lengkap cuci, kering, setrika rapi untuk pakaian formal dan kasual</p>
+                        <div class="service-price">Rp 10.000/kg</div>
+                        <ul class="service-features">
+                            <li>Cuci bersih dan kering sempurna</li>
+                            <li>Setrika profesional dan rapi</li>
+                            <li>Gantung atau lipat sesuai permintaan</li>
+                            <li>Estimasi: 2-3 hari kerja</li>
+                            <li>Cocok untuk pakaian kantor</li>
+                        </ul>
+                        <button class="service-btn" onclick="navigateToPage('contact')">Pesan Sekarang</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toggle Button -->
+            <div class="services-toggle">
+                <button id="toggleServicesBtn" class="toggle-btn" onclick="toggleAllServices()">
+                    <span class="toggle-text">Lihat Semua Layanan</span>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </button>
+            </div>
+
+            <!-- Hidden Services (Initially Hidden) -->
+            <div id="additionalServices" class="additional-services hidden">
+
+                <!-- Layanan Premium -->
+                <div class="service-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-crown"></i>
+                        Layanan Premium
+                    </h3>
+                    <div class="services-grid">
+                        <div class="service-card premium">
+                            <div class="service-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <h4>Cuci Jas / Jas Formal</h4>
+                            <p>Perawatan khusus untuk jas, blazer, dan pakaian formal dengan dry cleaning</p>
+                            <div class="service-price">Rp 35.000/pcs</div>
+                            <ul class="service-features">
+                                <li>Dry cleaning dengan teknologi modern</li>
+                                <li>Perawatan khusus untuk berbagai bahan</li>
+                                <li>Setrika steam profesional</li>
+                                <li>Estimasi: 3-4 hari kerja</li>
+                                <li>Packing premium dengan hanger</li>
+                            </ul>
+                            <button class="service-btn" onclick="navigateToPage('contact')">Pesan Sekarang</button>
+                        </div>
+
+                        <div class="service-card premium">
+                            <div class="service-icon">
+                                <i class="fas fa-bed"></i>
+                            </div>
+                            <h4>Cuci Bed Cover / Selimut</h4>
+                            <p>Layanan khusus untuk bed cover, selimut, sprei dengan mesin kapasitas besar</p>
+                            <div class="service-price">Rp 25.000/pcs</div>
+                            <ul class="service-features">
+                                <li>Mesin cuci kapasitas besar</li>
+                                <li>Deterjen anti tungau dan bakteri</li>
+                                <li>Pengeringan sempurna dan higienis</li>
+                                <li>Estimasi: 2-3 hari kerja</li>
+                                <li>Packing plastik bersih</li>
+                            </ul>
+                            <button class="service-btn" onclick="navigateToPage('contact')">Pesan Sekarang</button>
+                        </div>
+
+                        <div class="service-card premium">
+                            <div class="service-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <h4>Cuci Karpet</h4>
+                            <p>Pembersihan mendalam untuk karpet dengan shampo khusus dan teknologi steam</p>
+                            <div class="service-price">Rp 15.000/m²</div>
+                            <ul class="service-features">
+                                <li>Steam cleaning dengan shampo khusus</li>
+                                <li>Menghilangkan noda membandel</li>
+                                <li>Anti bakteri dan tungau</li>
+                                <li>Estimasi: 3-5 hari kerja</li>
+                                <li>Pickup dan delivery gratis</li>
+                            </ul>
+                            <button class="service-btn" onclick="navigateToPage('contact')">Pesan Sekarang</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Layanan Khusus -->
+                <div class="service-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-star"></i>
+                        Layanan Khusus
+                    </h3>
+                    <div class="services-grid">
+                        <div class="service-card special">
+                            <div class="service-icon">
+                                <i class="fas fa-running"></i>
+                            </div>
+                            <h4>Cuci Sepatu</h4>
+                            <p>Pembersihan profesional untuk sneakers, sepatu kulit, dan sepatu kanvas</p>
+                            <div class="service-price">Mulai Rp 20.000/pasang</div>
+                            <ul class="service-features">
+                                <li>Sneakers: Rp 20.000/pasang</li>
+                                <li>Sepatu Kulit: Rp 25.000/pasang</li>
+                                <li>Sepatu Kanvas: Rp 15.000/pasang</li>
+                                <li>Deep cleaning dan conditioning</li>
+                                <li>Estimasi: 2-3 hari kerja</li>
+                            </ul>
+                            <button class="service-btn" onclick="navigateToPage('contact')">Pesan Sekarang</button>
+                        </div>
+
+                        <div class="service-card special">
+                            <div class="service-icon">
+                                <i class="fas fa-motorcycle"></i>
+                            </div>
+                            <h4>Cuci Helm</h4>
+                            <p>Pembersihan dan sanitasi helm motor dengan bahan khusus yang aman</p>
+                            <div class="service-price">Rp 15.000/pcs</div>
+                            <ul class="service-features">
+                                <li>Pembersihan interior dan exterior</li>
+                                <li>Sanitasi anti bakteri</li>
+                                <li>Menghilangkan bau tidak sedap</li>
+                                <li>Estimasi: 1-2 hari kerja</li>
+                                <li>Aman untuk semua jenis helm</li>
+                            </ul>
+                            <button class="service-btn" onclick="navigateToPage('contact')">Pesan Sekarang</button>
+                        </div>
+
+                        <div class="service-card special">
+                            <div class="service-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h4>Cuci Boneka</h4>
+                            <p>Perawatan lembut untuk boneka dan mainan kesayangan dengan metode khusus</p>
+                            <div class="service-price">Rp 12.000/pcs</div>
+                            <ul class="service-features">
+                                <li>Cuci lembut dengan deterjen baby safe</li>
+                                <li>Pengeringan alami tanpa merusak bentuk</li>
+                                <li>Sterilisasi anti bakteri</li>
+                                <li>Estimasi: 2-3 hari kerja</li>
+                                <li>Cocok untuk boneka anak-anak</li>
+                            </ul>
+                            <button class="service-btn" onclick="navigateToPage('contact')">Pesan Sekarang</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Layanan Tambahan -->
+                <div class="service-category">
+                    <h3 class="category-title">
+                        <i class="fas fa-plus-circle"></i>
+                        Layanan Tambahan
+                    </h3>
+                    <div class="services-grid">
+                        <div class="service-card additional popular">
+                            <div class="service-badge">POPULER</div>
+                            <div class="service-icon">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <h4>Antar Jemput Laundry</h4>
+                            <p>Layanan pickup dan delivery gratis untuk kemudahan maksimal pelanggan</p>
+                            <div class="service-price">GRATIS*</div>
+                            <ul class="service-features">
+                                <li>Gratis untuk minimum order Rp 50.000</li>
+                                <li>Radius 5km dari outlet</li>
+                                <li>Jadwal fleksibel 08:00-19:00</li>
+                                <li>Tracking real-time via WhatsApp</li>
+                                <li>Penjemputan hari yang sama</li>
+                            </ul>
+                            <button class="service-btn" onclick="navigateToPage('contact')">Pesan Sekarang</button>
+                        </div>
+
+                        <div class="service-card additional express">
+                            <div class="service-badge">KILAT</div>
+                            <div class="service-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h4>Express Service</h4>
+                            <p>Layanan kilat untuk kebutuhan mendesak dengan berbagai pilihan waktu</p>
+                            <div class="service-price">+50% dari harga normal</div>
+                            <ul class="service-features">
+                                <li>Express 6 Jam: +100% harga normal</li>
+                                <li>Express 12 Jam: +75% harga normal</li>
+                                <li>Express 24 Jam: +50% harga normal</li>
+                                <li>Prioritas pengerjaan tertinggi</li>
+                                <li>Garansi tepat waktu</li>
+                            </ul>
+                            <button class="service-btn" onclick="navigateToPage('contact')">Pesan Sekarang</button>
+                        </div>
+
+                        <div class="service-card additional">
+                            <div class="service-icon">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <h4>Packing Khusus</h4>
+                            <p>Berbagai pilihan kemasan premium untuk penyimpanan dan pengiriman</p>
+                            <div class="service-price">Mulai Rp 5.000</div>
+                            <ul class="service-features">
+                                <li>Plastik Zip: Rp 5.000/pcs</li>
+                                <li>Vacuum Pack: Rp 10.000/pcs</li>
+                                <li>Box Premium: Rp 15.000/pcs</li>
+                                <li>Hanger Premium: Rp 3.000/pcs</li>
+                                <li>Cocok untuk travel dan storage</li>
+                            </ul>
+                            <button class="service-btn" onclick="navigateToPage('contact')">Pesan Sekarang</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCATION PAGE -->
+    <section id="location" class="page-section">
+        <div class="container">
+            <h2 class="section-title">Lokasi Kami</h2>
+            <p class="section-subtitle">Temukan outlet Fresh Clean Laundry terdekat</p>
+
+            <div class="location-content">
+                <!-- Map Container -->
+                <div class="map-container">
+                    <div class="map-wrapper">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613!3d-6.2087634!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5390917b759%3A0x6b45e67356080477!2sBundle%20Laundry!5e0!3m2!1sen!2sid!4v1635724000000!5m2!1sen!2sid"
+                            width="100%" height="400" style="border:0; border-radius: 15px;" allowfullscreen=""
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Informasi Kontak</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Alamat</h4>
+                            <p>Jl. HR Muhammad No. 13, Surabaya 12190</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Telepon</h4>
+                            <p>(021) 1234-5678</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>laundrify@freshclean.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Jam Operasional</h4>
+                            <p>Senin - Sabtu: 08:00 - 20:00<br>Minggu: 09:00 - 17:00</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-container">
+                    <form id="contactForm" class="contact-form">
+                        <h3>Kirim Pesan</h3>
+                        <div class="form-group">
+                            <label for="nama">Nama Lengkap</label>
+                            <input type="text" id="nama" name="nama" required>
+                            <span class="error-message" id="namaError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                            <span class="error-message" id="emailError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="nohp">No. HP</label>
+                            <input type="tel" id="nohp" name="nohp" required>
+                            <span class="error-message" id="nohpError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="pesan">Pesan</label>
+                            <textarea id="pesan" name="pesan" rows="5" required></textarea>
+                            <span class="error-message" id="pesanError"></span>
+                        </div>
+                        <button type="submit" class="submit-btn">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Result Modal -->
+    <div id="formModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Pesan Terkirim!</h3>
+            <div id="formResult"></div>
+            <button onclick="closeModal()" class="modal-btn">Tutup</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-tshirt"></i>
+                        <span>Laundrify</span>
+                    </div>
+                    <p>Solusi laundry terpercaya untuk kebutuhan kebersihan pakaian Anda</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Layanan</h4>
+                    <ul>
+                        <li>Laundry Kiloan</li>
+                        <li>Laundry Satuan</li>
+                        <li>Antar-Jemput</li>
+                        <li>Express 1 Hari</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Kontak</h4>
+                    <p><i class="fas fa-phone"></i> (021) 1234-5678</p>
+                    <p><i class="fas fa-envelope"></i> laundrify@freshclean.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Laundrify. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
 </body>
+
 </html>
