@@ -3,7 +3,6 @@ const hamburger = document.querySelector(".hamburger")
 const navMenu = document.querySelector(".nav-menu")
 const contactForm = document.getElementById("contactForm")
 const modal = document.getElementById("formModal")
-const closeModalBtn = document.querySelector(".close")
 const navLinks = document.querySelectorAll(".nav-link")
 const pageSections = document.querySelectorAll(".page-section")
 const galleryTabs = document.querySelectorAll(".gallery-tab")
@@ -52,19 +51,7 @@ navLinks.forEach((link) => {
     })
 })
 
-// Mobile Navigation Toggle
-hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("active")
-    navMenu.classList.toggle("active")
-})
-
-// Close mobile menu when clicking outside
-document.addEventListener("click", (e) => {
-    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-        hamburger.classList.remove("active")
-        navMenu.classList.remove("active")
-    }
-})
+document.addEventListener("DOMContentLoaded", setupSmoothScroll);
 
 // Gallery Filter System
 function filterGallery(category) {
@@ -117,6 +104,15 @@ function updateWelcomeMessage() {
     }
 }
 
+// CTA button scroll to services
+function scrollToServices() {
+    const servicesSection = document.getElementById('services');
+    servicesSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+    });
+}
+
 // Form validation functions
 function validateName(name) {
     return name.trim().length >= 2
@@ -138,11 +134,6 @@ function validateMessage(message) {
 
 function validateService(service) {
     return service.trim().length > 0
-}
-
-function scrollToServices() {
-    const layananSection = document.getElementById("services");
-    layananSection.scrollIntoView({ behavior: "smooth" });
 }
 
 // Show error message
@@ -326,50 +317,6 @@ function closeModal() {
     modal.style.display = "none"
 }
 
-// Modal event handlers
-function setupModalHandlers() {
-    // Close modal when clicking the X
-    if (closeModalBtn) {
-        closeModalBtn.addEventListener("click", closeModal)
-    }
-
-    // Close modal when clicking outside
-    window.addEventListener("click", (e) => {
-        if (e.target === modal) {
-            closeModal()
-        }
-    })
-
-    // Close modal with Escape key
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && modal.style.display === "block") {
-            closeModal()
-        }
-    })
-}
-
-// Handle browser back/forward buttons
-function setupBrowserNavigation() {
-    window.addEventListener("hashchange", () => {
-        const hash = window.location.hash.substring(1)
-        if (hash && document.getElementById(hash)) {
-            navigateToPage(hash)
-        } else {
-            navigateToPage("home")
-        }
-    })
-
-    // Handle initial page load
-    window.addEventListener("load", () => {
-        const hash = window.location.hash.substring(1)
-        if (hash && document.getElementById(hash)) {
-            navigateToPage(hash)
-        } else {
-            navigateToPage("home")
-        }
-    })
-}
-
 // Navbar background change on scroll
 function setupScrollEffects() {
     let lastScrollTop = 0
@@ -507,22 +454,6 @@ function setupLazyLoading() {
     })
 
     images.forEach((img) => imageObserver.observe(img))
-}
-
-// Service Worker for offline functionality (optional)
-function setupServiceWorker() {
-    if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-            navigator.serviceWorker
-                .register("/sw.js")
-                .then((registration) => {
-                    console.log("SW registered: ", registration)
-                })
-                .catch((registrationError) => {
-                    console.log("SW registration failed: ", registrationError)
-                })
-        })
-    }
 }
 
 // Error handling for images
@@ -673,14 +604,9 @@ function setupLocationHandlers() {
 
 // Update the initializeApp function to include new handlers
 function initializeApp() {
-    // Core functionality
     updateWelcomeMessage()
     setupFormValidation()
     setupFormSubmission()
-    setupModalHandlers()
-    setupBrowserNavigation()
-
-    // UI enhancements
     setupScrollEffects()
     setupSmoothScroll()
     setupButtonEffects()
@@ -688,13 +614,8 @@ function initializeApp() {
     setupCounterAnimation()
     setupLazyLoading()
     setupImageErrorHandling()
-
-    // New functionality
     setupGalleryHandlers()
     setupLocationHandlers()
-
-    // Optional features
-    // setupServiceWorker();
 
     // Check URL hash on load
     const hash = window.location.hash.substring(1)
