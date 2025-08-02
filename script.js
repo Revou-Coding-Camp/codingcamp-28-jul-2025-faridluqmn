@@ -11,801 +11,712 @@ const galleryItems = document.querySelectorAll(".gallery-item")
 
 // Page Navigation System
 function navigateToPage(pageName) {
-  // Hide all sections
-  pageSections.forEach((section) => {
-    section.classList.remove("active")
-  })
+    // Hide all sections
+    pageSections.forEach((section) => {
+        section.classList.remove("active")
+    })
 
-  // Show target section with delay for smooth transition
-  const targetSection = document.getElementById(pageName)
-  if (targetSection) {
-    setTimeout(() => {
-      targetSection.classList.add("active")
-    }, 100)
-  }
-
-  // Update active nav link
-  navLinks.forEach((link) => {
-    link.classList.remove("active")
-    if (link.dataset.page === pageName) {
-      link.classList.add("active")
+    // Show target section with delay for smooth transition
+    const targetSection = document.getElementById(pageName)
+    if (targetSection) {
+        setTimeout(() => {
+            targetSection.classList.add("active")
+        }, 100)
     }
-  })
 
-  // Update URL hash
-  window.location.hash = pageName
+    // Update active nav link
+    navLinks.forEach((link) => {
+        link.classList.remove("active")
+        if (link.dataset.page === pageName) {
+            link.classList.add("active")
+        }
+    })
 
-  // Close mobile menu if open
-  hamburger.classList.remove("active")
-  navMenu.classList.remove("active")
+    // Update URL hash
+    window.location.hash = pageName
 
-  // Scroll to top
-  window.scrollTo({ top: 0, behavior: "smooth" })
+    // Close mobile menu if open
+    hamburger.classList.remove("active")
+    navMenu.classList.remove("active")
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: "smooth" })
 }
 
 // Navigation click handlers
 navLinks.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault()
-    const pageName = link.dataset.page
-    navigateToPage(pageName)
-  })
+    link.addEventListener("click", (e) => {
+        e.preventDefault()
+        const pageName = link.dataset.page
+        navigateToPage(pageName)
+    })
 })
 
 // Mobile Navigation Toggle
 hamburger.addEventListener("click", () => {
-  hamburger.classList.toggle("active")
-  navMenu.classList.toggle("active")
+    hamburger.classList.toggle("active")
+    navMenu.classList.toggle("active")
 })
 
 // Close mobile menu when clicking outside
 document.addEventListener("click", (e) => {
-  if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-    hamburger.classList.remove("active")
-    navMenu.classList.remove("active")
-  }
+    if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+        hamburger.classList.remove("active")
+        navMenu.classList.remove("active")
+    }
 })
 
 // Gallery Filter System
 function filterGallery(category) {
-  galleryItems.forEach((item) => {
-    if (category === "all" || item.dataset.category === category) {
-      item.style.display = "block"
-      setTimeout(() => {
-        item.style.opacity = "1"
-        item.style.transform = "scale(1)"
-      }, 100)
-    } else {
-      item.style.opacity = "0"
-      item.style.transform = "scale(0.8)"
-      setTimeout(() => {
-        item.style.display = "none"
-      }, 300)
-    }
-  })
+    galleryItems.forEach((item) => {
+        if (category === "all" || item.dataset.category === category) {
+            item.style.display = "block"
+            setTimeout(() => {
+                item.style.opacity = "1"
+                item.style.transform = "scale(1)"
+            }, 100)
+        } else {
+            item.style.opacity = "0"
+            item.style.transform = "scale(0.8)"
+            setTimeout(() => {
+                item.style.display = "none"
+            }, 300)
+        }
+    })
 }
 
 // Gallery tab click handlers
 galleryTabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    // Remove active class from all tabs
-    galleryTabs.forEach((t) => t.classList.remove("active"))
-    // Add active class to clicked tab
-    tab.classList.add("active")
-    // Filter gallery
-    const category = tab.dataset.category
-    filterGallery(category)
-  })
+    tab.addEventListener("click", () => {
+        // Remove active class from all tabs
+        galleryTabs.forEach((t) => t.classList.remove("active"))
+        // Add active class to clicked tab
+        tab.classList.add("active")
+        // Filter gallery
+        const category = tab.dataset.category
+        filterGallery(category)
+    })
 })
 
 // Welcome message with user's name
 function updateWelcomeMessage() {
-  const welcomeElement = document.getElementById("welcome-message")
-  const userName = localStorage.getItem("userName")
+    const welcomeElement = document.getElementById("welcome-message")
+    const userName = localStorage.getItem("userName")
 
-  if (userName) {
-    welcomeElement.textContent = `Hi, ${userName}!`
-  } else {
-    // Prompt for user's name if not stored
-    const name = prompt("Siapa nama Anda?")
-    if (name && name.trim() !== "") {
-      localStorage.setItem("userName", name.trim())
-      welcomeElement.textContent = `Hi, ${name.trim()}!`
+    if (userName) {
+        welcomeElement.textContent = `Hi, ${userName}!`
     } else {
-      welcomeElement.textContent = "Hi, Selamat Datang!"
+        // Prompt for user's name if not stored
+        const name = prompt("Siapa nama Anda?")
+        if (name && name.trim() !== "") {
+            localStorage.setItem("userName", name.trim())
+            welcomeElement.textContent = `Hi, ${name.trim()}!`
+        } else {
+            welcomeElement.textContent = "Hi, Selamat Datang!"
+        }
     }
-  }
 }
 
 // Form validation functions
 function validateName(name) {
-  return name.trim().length >= 2
+    return name.trim().length >= 2
 }
 
 function validateEmail(email) {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  return emailRegex.test(email)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
 }
 
 function validatePhone(phone) {
-  const phoneRegex = /^[\d\s\-+()]{10,15}$/
-  return phoneRegex.test(phone.replace(/\s/g, ""))
+    const phoneRegex = /^[\d\s\-+()]{10,15}$/
+    return phoneRegex.test(phone.replace(/\s/g, ""))
 }
 
 function validateMessage(message) {
-  return message.trim().length >= 10
+    return message.trim().length >= 10
 }
 
 function validateService(service) {
-  return service.trim().length > 0
+    return service.trim().length > 0
+}
+
+function scrollToServices() {
+    const layananSection = document.getElementById("services");
+    layananSection.scrollIntoView({ behavior: "smooth" });
 }
 
 // Show error message
 function showError(fieldId, message) {
-  const field = document.getElementById(fieldId)
-  const errorElement = document.getElementById(fieldId + "Error")
+    const field = document.getElementById(fieldId)
+    const errorElement = document.getElementById(fieldId + "Error")
 
-  if (field && errorElement) {
-    field.classList.add("error")
-    errorElement.textContent = message
-  }
+    if (field && errorElement) {
+        field.classList.add("error")
+        errorElement.textContent = message
+    }
 }
 
 // Clear error message
 function clearError(fieldId) {
-  const field = document.getElementById(fieldId)
-  const errorElement = document.getElementById(fieldId + "Error")
+    const field = document.getElementById(fieldId)
+    const errorElement = document.getElementById(fieldId + "Error")
 
-  if (field && errorElement) {
-    field.classList.remove("error")
-    errorElement.textContent = ""
-  }
+    if (field && errorElement) {
+        field.classList.remove("error")
+        errorElement.textContent = ""
+    }
 }
 
 // Real-time validation
 function setupFormValidation() {
-  const namaField = document.getElementById("nama")
-  const emailField = document.getElementById("email")
-  const nohpField = document.getElementById("nohp")
-  const pesanField = document.getElementById("pesan")
-  const layananField = document.getElementById("layanan")
+    const namaField = document.getElementById("nama")
+    const emailField = document.getElementById("email")
+    const nohpField = document.getElementById("nohp")
+    const pesanField = document.getElementById("pesan")
+    const layananField = document.getElementById("layanan")
 
-  if (namaField) {
-    namaField.addEventListener("input", function () {
-      if (this.value.trim().length > 0) {
-        if (validateName(this.value)) {
-          clearError("nama")
-        } else {
-          showError("nama", "Nama harus minimal 2 karakter")
-        }
-      } else {
-        clearError("nama")
-      }
-    })
-  }
+    if (namaField) {
+        namaField.addEventListener("input", function () {
+            if (this.value.trim().length > 0) {
+                if (validateName(this.value)) {
+                    clearError("nama")
+                } else {
+                    showError("nama", "Nama harus minimal 2 karakter")
+                }
+            } else {
+                clearError("nama")
+            }
+        })
+    }
 
-  if (emailField) {
-    emailField.addEventListener("input", function () {
-      if (this.value.trim().length > 0) {
-        if (validateEmail(this.value)) {
-          clearError("email")
-        } else {
-          showError("email", "Format email tidak valid")
-        }
-      } else {
-        clearError("email")
-      }
-    })
-  }
+    if (emailField) {
+        emailField.addEventListener("input", function () {
+            if (this.value.trim().length > 0) {
+                if (validateEmail(this.value)) {
+                    clearError("email")
+                } else {
+                    showError("email", "Format email tidak valid")
+                }
+            } else {
+                clearError("email")
+            }
+        })
+    }
 
-  if (nohpField) {
-    nohpField.addEventListener("input", function () {
-      if (this.value.trim().length > 0) {
-        if (validatePhone(this.value)) {
-          clearError("nohp")
-        } else {
-          showError("nohp", "Nomor HP harus 10-15 digit")
-        }
-      } else {
-        clearError("nohp")
-      }
-    })
-  }
+    if (nohpField) {
+        nohpField.addEventListener("input", function () {
+            if (this.value.trim().length > 0) {
+                if (validatePhone(this.value)) {
+                    clearError("nohp")
+                } else {
+                    showError("nohp", "Nomor HP harus 10-15 digit")
+                }
+            } else {
+                clearError("nohp")
+            }
+        })
+    }
 
-  if (pesanField) {
-    pesanField.addEventListener("input", function () {
-      if (this.value.trim().length > 0) {
-        if (validateMessage(this.value)) {
-          clearError("pesan")
-        } else {
-          showError("pesan", "Pesan harus minimal 10 karakter")
-        }
-      } else {
-        clearError("pesan")
-      }
-    })
-  }
+    if (pesanField) {
+        pesanField.addEventListener("input", function () {
+            if (this.value.trim().length > 0) {
+                if (validateMessage(this.value)) {
+                    clearError("pesan")
+                } else {
+                    showError("pesan", "Pesan harus minimal 10 karakter")
+                }
+            } else {
+                clearError("pesan")
+            }
+        })
+    }
 
-  if (layananField) {
-    layananField.addEventListener("change", function () {
-      if (validateService(this.value)) {
-        clearError("layanan")
-      } else {
-        showError("layanan", "Pilih jenis layanan")
-      }
-    })
-  }
+    if (layananField) {
+        layananField.addEventListener("change", function () {
+            if (validateService(this.value)) {
+                clearError("layanan")
+            } else {
+                showError("layanan", "Pilih jenis layanan")
+            }
+        })
+    }
 }
 
 // Form submission
-function setupFormSubmission() {
-  if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault()
+contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-      // Get form data
-      const formData = {
-        nama: document.getElementById("nama").value.trim(),
-        email: document.getElementById("email").value.trim(),
-        nohp: document.getElementById("nohp").value.trim(),
-        layanan: document.getElementById("layanan").value.trim(),
-        alamat: document.getElementById("alamat").value.trim(),
-        waktu: document.getElementById("waktu").value.trim(),
-        pesan: document.getElementById("pesan").value.trim(),
-      }
+    // Get form data
+    const formData = {
+        nama: document.getElementById('nama').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        nohp: document.getElementById('nohp').value.trim(),
+        pesan: document.getElementById('pesan').value.trim()
+    };
 
-      // Clear previous errors
-      ;["nama", "email", "nohp", "layanan", "pesan"].forEach((field) => clearError(field))
+    // Clear previous errors
+    ['nama', 'email', 'nohp', 'pesan'].forEach(field => clearError(field));
 
-      // Validate all fields
-      let isValid = true
+    // Validate all fields
+    let isValid = true;
 
-      if (!validateName(formData.nama)) {
-        showError("nama", "Nama harus minimal 2 karakter")
-        isValid = false
-      }
+    if (!validateName(formData.nama)) {
+        showError('nama', 'Nama harus minimal 2 karakter');
+        isValid = false;
+    }
 
-      if (!validateEmail(formData.email)) {
-        showError("email", "Format email tidak valid")
-        isValid = false
-      }
+    if (!validateEmail(formData.email)) {
+        showError('email', 'Format email tidak valid');
+        isValid = false;
+    }
 
-      if (!validatePhone(formData.nohp)) {
-        showError("nohp", "Nomor HP harus 10-15 digit")
-        isValid = false
-      }
+    if (!validatePhone(formData.nohp)) {
+        showError('nohp', 'Nomor HP harus 10-15 digit');
+        isValid = false;
+    }
 
-      if (!validateService(formData.layanan)) {
-        showError("layanan", "Pilih jenis layanan")
-        isValid = false
-      }
+    if (!validateMessage(formData.pesan)) {
+        showError('pesan', 'Pesan harus minimal 10 karakter');
+        isValid = false;
+    }
 
-      if (!validateMessage(formData.pesan)) {
-        showError("pesan", "Pesan harus minimal 10 karakter")
-        isValid = false
-      }
-
-      // If form is valid, show the submitted data
-      if (isValid) {
-        displayFormResult(formData)
-        contactForm.reset()
-      } else {
-        // Scroll to first error
-        const firstError = document.querySelector(".error")
-        if (firstError) {
-          firstError.scrollIntoView({ behavior: "smooth", block: "center" })
-        }
-      }
-    })
-  }
-}
+    // If form is valid, show the submitted data
+    if (isValid) {
+        displayFormResult(formData);
+        contactForm.reset();
+    }
+});
 
 // Display form result in modal
 function displayFormResult(data) {
-  const resultDiv = document.getElementById("formResult")
+    const resultDiv = document.getElementById('formResult');
 
-  // Format waktu pickup jika ada
-  let waktuPickup = ""
-  if (data.waktu) {
-    const date = new Date(data.waktu)
-    waktuPickup = date.toLocaleString("id-ID", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    })
-  }
+    resultDiv.innerHTML = `
+                <div style="background: #f0f9ff; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #2563eb;">
+                    <h4 style="color: #1e40af; margin-bottom: 1rem;">Data yang Anda kirim:</h4>
+                    <div style="margin-bottom: 0.8rem;">
+                        <strong>Nama:</strong> ${data.nama}
+                    </div>
+                    <div style="margin-bottom: 0.8rem;">
+                        <strong>Email:</strong> ${data.email}
+                    </div>
+                    <div style="margin-bottom: 0.8rem;">
+                        <strong>No. HP:</strong> ${data.nohp}
+                    </div>
+                    <div style="margin-bottom: 0.8rem;">
+                        <strong>Pesan:</strong><br>
+                        <div style="background: white; padding: 1rem; border-radius: 5px; margin-top: 0.5rem; border: 1px solid #e5e7eb;">
+                            ${data.pesan}
+                        </div>
+                    </div>
+                    <div style="margin-top: 1rem; padding: 1rem; background: #ecfdf5; border-radius: 5px; border: 1px solid #10b981;">
+                        <p style="color: #059669; margin: 0;">
+                            <i class="fas fa-check-circle"></i> 
+                            Terima kasih! Pesan Anda telah diterima. Tim kami akan menghubungi Anda segera.
+                        </p>
+                    </div>
+                </div>
+            `;
 
-  // Map layanan ke nama yang lebih friendly
-  const layananMap = {
-    kiloan: "Laundry Kiloan",
-    satuan: "Laundry Satuan",
-    express: "Express Service",
-    "dry-clean": "Dry Cleaning",
-    setrika: "Setrika Saja",
-    pickup: "Request Pickup",
-    membership: "Daftar Membership",
-  }
-
-  const layananText = layananMap[data.layanan] || data.layanan
-
-  resultDiv.innerHTML = `
-        <div style="background: #f0f9ff; padding: 2rem; border-radius: 15px; border-left: 4px solid #2563eb;">
-            <h4 style="color: #1e40af; margin-bottom: 1.5rem; font-size: 1.2rem;">📋 Data yang Anda kirim:</h4>
-            
-            <div class="result-grid" style="display: grid; gap: 1rem; margin-bottom: 1.5rem;">
-                <div style="display: flex; justify-content: space-between; padding: 0.8rem; background: white; border-radius: 8px; border: 1px solid #e5e7eb;">
-                    <strong style="color: #374151;">Nama:</strong> 
-                    <span style="color: #1f2937;">${data.nama}</span>
-                </div>
-                
-                <div style="display: flex; justify-content: space-between; padding: 0.8rem; background: white; border-radius: 8px; border: 1px solid #e5e7eb;">
-                    <strong style="color: #374151;">Email:</strong> 
-                    <span style="color: #1f2937;">${data.email}</span>
-                </div>
-                
-                <div style="display: flex; justify-content: space-between; padding: 0.8rem; background: white; border-radius: 8px; border: 1px solid #e5e7eb;">
-                    <strong style="color: #374151;">No. HP:</strong> 
-                    <span style="color: #1f2937;">${data.nohp}</span>
-                </div>
-                
-                <div style="display: flex; justify-content: space-between; padding: 0.8rem; background: white; border-radius: 8px; border: 1px solid #e5e7eb;">
-                    <strong style="color: #374151;">Layanan:</strong> 
-                    <span style="color: #2563eb; font-weight: 600;">${layananText}</span>
-                </div>
-                
-                ${
-                  data.alamat
-                    ? `
-                <div style="display: flex; justify-content: space-between; padding: 0.8rem; background: white; border-radius: 8px; border: 1px solid #e5e7eb;">
-                    <strong style="color: #374151;">Alamat Pickup:</strong> 
-                    <span style="color: #1f2937;">${data.alamat}</span>
-                </div>
-                `
-                    : ""
-                }
-                
-                ${
-                  waktuPickup
-                    ? `
-                <div style="display: flex; justify-content: space-between; padding: 0.8rem; background: white; border-radius: 8px; border: 1px solid #e5e7eb;">
-                    <strong style="color: #374151;">Waktu Pickup:</strong> 
-                    <span style="color: #1f2937;">${waktuPickup}</span>
-                </div>
-                `
-                    : ""
-                }
-            </div>
-            
-            <div style="margin-bottom: 1.5rem;">
-                <strong style="color: #374151; display: block; margin-bottom: 0.5rem;">Pesan / Catatan:</strong>
-                <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #e5e7eb; line-height: 1.6;">
-                    ${data.pesan}
-                </div>
-            </div>
-            
-            <div style="padding: 1.5rem; background: #ecfdf5; border-radius: 10px; border: 1px solid #10b981;">
-                <p style="color: #059669; margin: 0; display: flex; align-items: center; gap: 0.5rem; font-weight: 500;">
-                    <i class="fas fa-check-circle" style="color: #10b981; font-size: 1.2rem;"></i> 
-                    Terima kasih! Pesan Anda telah diterima. Tim kami akan menghubungi Anda segera melalui WhatsApp atau telepon.
-                </p>
-            </div>
-            
-            <div style="margin-top: 1.5rem; text-align: center;">
-                <p style="color: #6b7280; font-size: 0.9rem; margin-bottom: 1rem;">Atau hubungi kami langsung:</p>
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="https://wa.me/6281234567890" target="_blank" style="background: #25d366; color: white; padding: 0.8rem 1.5rem; border-radius: 25px; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; font-weight: 600; transition: all 0.3s ease;">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
-                    </a>
-                    <a href="tel:02112345678" style="background: #2563eb; color: white; padding: 0.8rem 1.5rem; border-radius: 25px; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; font-weight: 600; transition: all 0.3s ease;">
-                        <i class="fas fa-phone"></i> Telepon
-                    </a>
-                </div>
-            </div>
-        </div>
-    `
-
-  modal.style.display = "block"
+    modal.style.display = 'block';
 }
 
 // Close modal function
 function closeModal() {
-  modal.style.display = "none"
+    modal.style.display = "none"
 }
 
 // Modal event handlers
 function setupModalHandlers() {
-  // Close modal when clicking the X
-  if (closeModalBtn) {
-    closeModalBtn.addEventListener("click", closeModal)
-  }
-
-  // Close modal when clicking outside
-  window.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      closeModal()
+    // Close modal when clicking the X
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener("click", closeModal)
     }
-  })
 
-  // Close modal with Escape key
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.style.display === "block") {
-      closeModal()
-    }
-  })
+    // Close modal when clicking outside
+    window.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            closeModal()
+        }
+    })
+
+    // Close modal with Escape key
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.style.display === "block") {
+            closeModal()
+        }
+    })
 }
 
 // Handle browser back/forward buttons
 function setupBrowserNavigation() {
-  window.addEventListener("hashchange", () => {
-    const hash = window.location.hash.substring(1)
-    if (hash && document.getElementById(hash)) {
-      navigateToPage(hash)
-    } else {
-      navigateToPage("home")
-    }
-  })
+    window.addEventListener("hashchange", () => {
+        const hash = window.location.hash.substring(1)
+        if (hash && document.getElementById(hash)) {
+            navigateToPage(hash)
+        } else {
+            navigateToPage("home")
+        }
+    })
 
-  // Handle initial page load
-  window.addEventListener("load", () => {
-    const hash = window.location.hash.substring(1)
-    if (hash && document.getElementById(hash)) {
-      navigateToPage(hash)
-    } else {
-      navigateToPage("home")
-    }
-  })
+    // Handle initial page load
+    window.addEventListener("load", () => {
+        const hash = window.location.hash.substring(1)
+        if (hash && document.getElementById(hash)) {
+            navigateToPage(hash)
+        } else {
+            navigateToPage("home")
+        }
+    })
 }
 
 // Navbar background change on scroll
 function setupScrollEffects() {
-  let lastScrollTop = 0
-  const navbar = document.querySelector(".navbar")
+    let lastScrollTop = 0
+    const navbar = document.querySelector(".navbar")
 
-  window.addEventListener("scroll", () => {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    window.addEventListener("scroll", () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop
 
-    // Change navbar background based on scroll position
-    if (scrollTop > 100) {
-      navbar.style.background = "rgba(255, 255, 255, 0.98)"
-      navbar.style.boxShadow = "0 2px 20px rgba(0, 0, 0, 0.15)"
-    } else {
-      navbar.style.background = "rgba(255, 255, 255, 0.95)"
-      navbar.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.1)"
-    }
+        // Change navbar background based on scroll position
+        if (scrollTop > 100) {
+            navbar.style.background = "rgba(255, 255, 255, 0.98)"
+            navbar.style.boxShadow = "0 2px 20px rgba(0, 0, 0, 0.15)"
+        } else {
+            navbar.style.background = "rgba(255, 255, 255, 0.95)"
+            navbar.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.1)"
+        }
 
-    // Hide/show navbar on scroll (optional)
-    if (scrollTop > lastScrollTop && scrollTop > 200) {
-      // Scrolling down
-      navbar.style.transform = "translateY(-100%)"
-    } else {
-      // Scrolling up
-      navbar.style.transform = "translateY(0)"
-    }
+        // Hide/show navbar on scroll (optional)
+        if (scrollTop > lastScrollTop && scrollTop > 200) {
+            // Scrolling down
+            navbar.style.transform = "translateY(-100%)"
+        } else {
+            // Scrolling up
+            navbar.style.transform = "translateY(0)"
+        }
 
-    lastScrollTop = scrollTop
-  })
+        lastScrollTop = scrollTop
+    })
 }
 
 // Smooth scroll for anchor links
 function setupSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault()
-      const target = document.querySelector(this.getAttribute("href"))
-      if (target) {
-        target.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault()
+            const target = document.querySelector(this.getAttribute("href"))
+            if (target) {
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                })
+            }
         })
-      }
     })
-  })
 }
 
 // Add click effects for buttons
 function setupButtonEffects() {
-  // CTA buttons click effect
-  document.querySelectorAll(".cta-button, .service-btn, .discount-btn, .submit-btn").forEach((button) => {
-    button.addEventListener("click", function () {
-      this.style.transform = "scale(0.95)"
-      setTimeout(() => {
-        this.style.transform = ""
-      }, 150)
+    // CTA buttons click effect
+    document.querySelectorAll(".cta-button, .service-btn, .discount-btn, .submit-btn").forEach((button) => {
+        button.addEventListener("click", function () {
+            this.style.transform = "scale(0.95)"
+            setTimeout(() => {
+                this.style.transform = ""
+            }, 150)
+        })
     })
-  })
 }
 
 // Intersection Observer for animations
 function setupScrollAnimations() {
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  }
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+    }
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = "1"
-        entry.target.style.transform = "translateY(0)"
-      }
-    })
-  }, observerOptions)
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = "1"
+                entry.target.style.transform = "translateY(0)"
+            }
+        })
+    }, observerOptions)
 
-  // Observe elements for animation
-  document
-    .querySelectorAll(".service-card, .pricing-card, .discount-card, .gallery-item, .contact-item")
-    .forEach((el) => {
-      el.style.opacity = "0"
-      el.style.transform = "translateY(30px)"
-      el.style.transition = "opacity 0.6s ease, transform 0.6s ease"
-      observer.observe(el)
-    })
+    // Observe elements for animation
+    document
+        .querySelectorAll(".service-card, .pricing-card, .discount-card, .gallery-item, .contact-item")
+        .forEach((el) => {
+            el.style.opacity = "0"
+            el.style.transform = "translateY(30px)"
+            el.style.transition = "opacity 0.6s ease, transform 0.6s ease"
+            observer.observe(el)
+        })
 }
 
 // Statistics counter animation
 function setupCounterAnimation() {
-  const counters = document.querySelectorAll(".stat-number")
-  const speed = 200 // The lower the slower
+    const counters = document.querySelectorAll(".stat-number")
+    const speed = 200 // The lower the slower
 
-  const countUp = (counter) => {
-    const target = Number.parseInt(counter.textContent.replace(/[^\d]/g, ""))
-    const increment = target / speed
-    let current = 0
+    const countUp = (counter) => {
+        const target = Number.parseInt(counter.textContent.replace(/[^\d]/g, ""))
+        const increment = target / speed
+        let current = 0
 
-    const timer = setInterval(() => {
-      current += increment
-      if (current >= target) {
-        counter.textContent = counter.textContent.replace(/[\d,]+/, target.toLocaleString())
-        clearInterval(timer)
-      } else {
-        counter.textContent = counter.textContent.replace(/[\d,]+/, Math.floor(current).toLocaleString())
-      }
-    }, 1)
-  }
+        const timer = setInterval(() => {
+            current += increment
+            if (current >= target) {
+                counter.textContent = counter.textContent.replace(/[\d,]+/, target.toLocaleString())
+                clearInterval(timer)
+            } else {
+                counter.textContent = counter.textContent.replace(/[\d,]+/, Math.floor(current).toLocaleString())
+            }
+        }, 1)
+    }
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        countUp(entry.target)
-        observer.unobserve(entry.target)
-      }
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                countUp(entry.target)
+                observer.unobserve(entry.target)
+            }
+        })
     })
-  })
 
-  counters.forEach((counter) => {
-    observer.observe(counter)
-  })
+    counters.forEach((counter) => {
+        observer.observe(counter)
+    })
 }
 
 // Lazy loading for images
 function setupLazyLoading() {
-  const images = document.querySelectorAll("img[data-src]")
+    const images = document.querySelectorAll("img[data-src]")
 
-  const imageObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const img = entry.target
-        img.src = img.dataset.src
-        img.classList.remove("lazy")
-        imageObserver.unobserve(img)
-      }
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const img = entry.target
+                img.src = img.dataset.src
+                img.classList.remove("lazy")
+                imageObserver.unobserve(img)
+            }
+        })
     })
-  })
 
-  images.forEach((img) => imageObserver.observe(img))
+    images.forEach((img) => imageObserver.observe(img))
 }
 
 // Service Worker for offline functionality (optional)
 function setupServiceWorker() {
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-      navigator.serviceWorker
-        .register("/sw.js")
-        .then((registration) => {
-          console.log("SW registered: ", registration)
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+            navigator.serviceWorker
+                .register("/sw.js")
+                .then((registration) => {
+                    console.log("SW registered: ", registration)
+                })
+                .catch((registrationError) => {
+                    console.log("SW registration failed: ", registrationError)
+                })
         })
-        .catch((registrationError) => {
-          console.log("SW registration failed: ", registrationError)
-        })
-    })
-  }
+    }
 }
 
 // Error handling for images
 function setupImageErrorHandling() {
-  document.querySelectorAll("img").forEach((img) => {
-    img.addEventListener("error", function () {
-      this.src = "/placeholder.svg?height=300&width=400&text=Image+Not+Found"
-      this.alt = "Image not available"
+    document.querySelectorAll("img").forEach((img) => {
+        img.addEventListener("error", function () {
+            this.src = "/placeholder.svg?height=300&width=400&text=Image+Not+Found"
+            this.alt = "Image not available"
+        })
     })
-  })
 }
 
 // Toggle Services Functionality
 let servicesExpanded = false
 
 function toggleAllServices() {
-  const additionalServices = document.getElementById("additionalServices")
-  const toggleBtn = document.getElementById("toggleServicesBtn")
-  const toggleText = toggleBtn.querySelector(".toggle-text")
-  const toggleIcon = toggleBtn.querySelector(".toggle-icon")
+    const additionalServices = document.getElementById("additionalServices")
+    const toggleBtn = document.getElementById("toggleServicesBtn")
+    const toggleText = toggleBtn.querySelector(".toggle-text")
+    const toggleIcon = toggleBtn.querySelector(".toggle-icon")
 
-  if (!servicesExpanded) {
-    // Show additional services
-    additionalServices.classList.remove("hidden")
-    additionalServices.classList.add("visible")
+    if (!servicesExpanded) {
+        // Show additional services
+        additionalServices.classList.remove("hidden")
+        additionalServices.classList.add("visible")
 
-    // Update button
-    toggleText.textContent = "Sembunyikan Layanan"
-    toggleIcon.classList.add("fa-chevron-up")
-    toggleIcon.classList.remove("fa-chevron-down")
-    toggleBtn.classList.add("expanded")
+        // Update button
+        toggleText.textContent = "Sembunyikan Layanan"
+        toggleIcon.classList.add("fa-chevron-up")
+        toggleIcon.classList.remove("fa-chevron-down")
+        toggleBtn.classList.add("expanded")
 
-    // Smooth scroll to additional services
-    setTimeout(() => {
-      additionalServices.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      })
-    }, 100)
+        // Smooth scroll to additional services
+        setTimeout(() => {
+            additionalServices.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            })
+        }, 100)
 
-    servicesExpanded = true
-  } else {
-    // Hide additional services
-    additionalServices.classList.remove("visible")
-    additionalServices.classList.add("hidden")
+        servicesExpanded = true
+    } else {
+        // Hide additional services
+        additionalServices.classList.remove("visible")
+        additionalServices.classList.add("hidden")
 
-    // Update button
-    toggleText.textContent = "Lihat Semua Layanan"
-    toggleIcon.classList.add("fa-chevron-down")
-    toggleIcon.classList.remove("fa-chevron-up")
-    toggleBtn.classList.remove("expanded")
+        // Update button
+        toggleText.textContent = "Lihat Semua Layanan"
+        toggleIcon.classList.add("fa-chevron-down")
+        toggleIcon.classList.remove("fa-chevron-up")
+        toggleBtn.classList.remove("expanded")
 
-    // Scroll back to toggle button
-    setTimeout(() => {
-      toggleBtn.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      })
-    }, 100)
+        // Scroll back to toggle button
+        setTimeout(() => {
+            toggleBtn.scrollIntoView({
+                behavior: "smooth",
+                block: "center",
+            })
+        }, 100)
 
-    servicesExpanded = false
-  }
+        servicesExpanded = false
+    }
 }
 
 // Initialize services on page load
 function initializeServices() {
-  const additionalServices = document.getElementById("additionalServices")
-  if (additionalServices) {
-    additionalServices.classList.add("hidden")
-  }
+    const additionalServices = document.getElementById("additionalServices")
+    if (additionalServices) {
+        additionalServices.classList.add("hidden")
+    }
 }
 
 // Image Modal Functions
 function openImageModal(button) {
-  const modal = document.getElementById("imageModal")
-  const modalImage = document.getElementById("modalImage")
-  const modalTitle = document.getElementById("modalTitle")
-  const modalDescription = document.getElementById("modalDescription")
+    const modal = document.getElementById("imageModal")
+    const modalImage = document.getElementById("modalImage")
+    const modalTitle = document.getElementById("modalTitle")
+    const modalDescription = document.getElementById("modalDescription")
 
-  const galleryItem = button.closest(".gallery-item")
-  const img = galleryItem.querySelector("img")
-  const info = galleryItem.querySelector(".gallery-info")
+    const galleryItem = button.closest(".gallery-item")
+    const img = galleryItem.querySelector("img")
+    const info = galleryItem.querySelector(".gallery-info")
 
-  modalImage.src = img.src
-  modalImage.alt = img.alt
-  modalTitle.textContent = info.querySelector("h4").textContent
-  modalDescription.textContent = info.querySelector("p").textContent
+    modalImage.src = img.src
+    modalImage.alt = img.alt
+    modalTitle.textContent = info.querySelector("h4").textContent
+    modalDescription.textContent = info.querySelector("p").textContent
 
-  modal.style.display = "block"
-  document.body.style.overflow = "hidden"
+    modal.style.display = "block"
+    document.body.style.overflow = "hidden"
 }
 
 function closeImageModal() {
-  const modal = document.getElementById("imageModal")
-  modal.style.display = "none"
-  document.body.style.overflow = "auto"
+    const modal = document.getElementById("imageModal")
+    modal.style.display = "none"
+    document.body.style.overflow = "auto"
 }
 
 // Setup Gallery Functionality
 function setupGalleryHandlers() {
-  const galleryTabs = document.querySelectorAll(".gallery-tab")
+    const galleryTabs = document.querySelectorAll(".gallery-tab")
 
-  galleryTabs.forEach((tab) => {
-    tab.addEventListener("click", () => {
-      // Remove active class from all tabs
-      galleryTabs.forEach((t) => t.classList.remove("active"))
-      // Add active class to clicked tab
-      tab.classList.add("active")
-      // Filter gallery
-      const category = tab.dataset.category
-      filterGallery(category)
+    galleryTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+            // Remove active class from all tabs
+            galleryTabs.forEach((t) => t.classList.remove("active"))
+            // Add active class to clicked tab
+            tab.classList.add("active")
+            // Filter gallery
+            const category = tab.dataset.category
+            filterGallery(category)
+        })
     })
-  })
 
-  // Close modal when clicking outside the image
-  const modal = document.getElementById("imageModal")
-  if (modal) {
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        closeImageModal()
-      }
-    })
-  }
-
-  // Close modal with Escape key
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      closeImageModal()
+    // Close modal when clicking outside the image
+    const modal = document.getElementById("imageModal")
+    if (modal) {
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                closeImageModal()
+            }
+        })
     }
-  })
+
+    // Close modal with Escape key
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            closeImageModal()
+        }
+    })
 }
 
 // Location Map Interaction
 function setupLocationHandlers() {
-  // Add click tracking for location buttons
-  const locationBtns = document.querySelectorAll(".location-btn")
+    // Add click tracking for location buttons
+    const locationBtns = document.querySelectorAll(".location-btn")
 
-  locationBtns.forEach((btn) => {
-    btn.addEventListener("click", function () {
-      // Add click animation
-      this.style.transform = "scale(0.95)"
-      setTimeout(() => {
-        this.style.transform = ""
-      }, 150)
+    locationBtns.forEach((btn) => {
+        btn.addEventListener("click", function () {
+            // Add click animation
+            this.style.transform = "scale(0.95)"
+            setTimeout(() => {
+                this.style.transform = ""
+            }, 150)
+        })
     })
-  })
 }
 
 // Update the initializeApp function to include new handlers
 function initializeApp() {
-  // Core functionality
-  updateWelcomeMessage()
-  setupFormValidation()
-  setupFormSubmission()
-  setupModalHandlers()
-  setupBrowserNavigation()
+    // Core functionality
+    updateWelcomeMessage()
+    setupFormValidation()
+    setupFormSubmission()
+    setupModalHandlers()
+    setupBrowserNavigation()
 
-  // UI enhancements
-  setupScrollEffects()
-  setupSmoothScroll()
-  setupButtonEffects()
-  setupScrollAnimations()
-  setupCounterAnimation()
-  setupLazyLoading()
-  setupImageErrorHandling()
+    // UI enhancements
+    setupScrollEffects()
+    setupSmoothScroll()
+    setupButtonEffects()
+    setupScrollAnimations()
+    setupCounterAnimation()
+    setupLazyLoading()
+    setupImageErrorHandling()
 
-  // New functionality
-  setupGalleryHandlers()
-  setupLocationHandlers()
+    // New functionality
+    setupGalleryHandlers()
+    setupLocationHandlers()
 
-  // Optional features
-  // setupServiceWorker();
+    // Optional features
+    // setupServiceWorker();
 
-  // Check URL hash on load
-  const hash = window.location.hash.substring(1)
-  if (hash && document.getElementById(hash)) {
-    navigateToPage(hash)
-  } else {
-    navigateToPage("home")
-  }
+    // Check URL hash on load
+    const hash = window.location.hash.substring(1)
+    if (hash && document.getElementById(hash)) {
+        navigateToPage(hash)
+    } else {
+        navigateToPage("home")
+    }
 
-  console.log("Fresh Clean Laundry website initialized successfully! 🧺✨")
+    console.log("Fresh Clean Laundry website initialized successfully! 🧺✨")
 }
 
 // Add to existing initialization
 document.addEventListener("DOMContentLoaded", () => {
-  initializeServices()
+    initializeServices()
 })
 
 // Wait for DOM to be fully loaded
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initializeApp)
+    document.addEventListener("DOMContentLoaded", initializeApp)
 } else {
-  initializeApp()
+    initializeApp()
 }
 
 // Global functions for inline onclick handlers
@@ -819,13 +730,13 @@ window.closeImageModal = closeImageModal
 
 // Export functions for potential module use
 if (typeof module !== "undefined" && module.exports) {
-  module.exports = {
-    navigateToPage,
-    closeModal,
-    updateWelcomeMessage,
-    validateName,
-    validateEmail,
-    validatePhone,
-    validateMessage,
-  }
+    module.exports = {
+        navigateToPage,
+        closeModal,
+        updateWelcomeMessage,
+        validateName,
+        validateEmail,
+        validatePhone,
+        validateMessage,
+    }
 }
